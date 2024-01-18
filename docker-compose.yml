@@ -1,0 +1,15 @@
+services:
+  db:
+    image: mongo:7.0.1
+    container_name: todoAPIdb
+    restart: always
+    ports:
+      - 27017:27017
+    env_file:
+      - .env
+    volumes:
+      - type: volume
+        source: todoapidb_data
+        target: /data/db
+volumes:
+  todoapidb_data:
