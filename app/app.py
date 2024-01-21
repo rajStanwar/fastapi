@@ -1,11 +1,11 @@
 import time
-import uvicorn
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Any, Callable, TypeVar
 from app.utils.config import settings
 from app.utils.logger import logger
 from app.routers.todos.todos import router as todos_router
+from app.routers.auth.auth import router as auth_router
 
 description = """
 This is a fancy API built with [FastAPI🚀](https://fastapi.tiangolo.com/)
@@ -54,15 +54,22 @@ async def process_time_log_middleware(request: Request, call_next: F) -> Respons
 
 
 app.include_router(
+    auth_router,
+    prefix="/v1/auth",
+    tags=["auth"],
+)
+
+app.include_router(
     todos_router,
     prefix="/v1/todos",
     tags=["todos"],
 )
+
 
 @app.get("/")
 async def root() -> dict[str, str]:
     return {"message": "Hello World"}
 
  
-if __name__== "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, log_level="debug", reload=True)
+# if __name__== "__main__":
+#     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, log_level="debug", reload=True)

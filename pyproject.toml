@@ -12,12 +12,18 @@ uvicorn = {extras = ["standard"], version = "^0.25.0"}
 python-dotenv = "^1.0.0"
 pydantic-settings = "^2.1.0"
 motor = "^3.3.2"
+httpx = "^0.26.0"
 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.1.13"
 black = "^23.12.1"
 mypy = "^1.8.0"
+pytest = "^7.4.4"
+coverage = "^7.4.0"
+mongomock-motor = "^0.0.26"
+pytest-httpx = "^0.28.0"
+pytest-asyncio = "^0.23.3"
 
 [build-system]
 requires = ["poetry-core"]
