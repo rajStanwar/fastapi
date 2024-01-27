@@ -50,7 +50,7 @@ async def oauth_callback(code: str = Query(description="Authorization code")) ->
         if error:
             raise HTTPException(
                 status_code=400,
-                detail=f"{data.get("error")}: {data.get('error_description')}",
+                detail=f"{data.get('error')}: {data.get('error_description')}",
             )
         
         access_token: str = data.get("access_token")
